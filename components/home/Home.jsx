@@ -96,8 +96,6 @@ const Home = () => {
     setExactMatch((prevState) => !prevState);
   };
 
-  console.log(exactMatch);
-
   return (
     <div>
       <h2>Items</h2>
