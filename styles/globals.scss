@@ -17,6 +17,20 @@ a {
   margin: 0;
 } */
 
+@import 'bootstrap/scss/functions'; // Required
+@import 'bootstrap/scss/variables'; // Required
+@import 'bootstrap/scss/mixins'; // Required
+
+@import 'bootstrap/scss/root'; // Required
+@import 'bootstrap/scss/reboot'; // Required
+
+// @include media-breakpoint-up(md) {
+//   body {
+//     background-color: pink;
+//     color: yellow !important;
+//   }
+// }
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

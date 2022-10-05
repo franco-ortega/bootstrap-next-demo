@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { sortItemsAsc, sortItemsDes } from '../../utils/sortItems';
+import Filter from '../filter/Filter';
+import SortAsc from '../sorters/SortAsc';
+import SortDes from '../sorters/SortDes';
 import Table from '../table/Table';
 
 const items = [
@@ -18,7 +22,7 @@ const items = [
     title: 'Rad Book',
     size: 'Small',
     color: 'Pink',
-    id: 3
+    id: 32
   }
 ];
 
@@ -26,102 +30,62 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState('');
   const [direction, setDirection] = useState('asc');
+  const [searchId, setSearchId] = useState('');
+  const [exactMatch, setExactMatch] = useState(false);
 
   useEffect(() => {
     setData(items);
 
-    const sortArray = (type, direction) => {
-      const sorted = [...items].sort((a, b) => {
-        if (direction === 'asc') {
-          if (a[type] < b[type]) return -1;
-          if (a[type] > b[type]) return 1;
-          return 0;
-        } else if (direction === 'des') {
-          if (a[type] > b[type]) return -1;
-          if (a[type] < b[type]) return 1;
-          return 0;
-        }
-      });
-
-      setData(sorted);
-    };
-
-    sortArray(sortType, direction);
+    if (direction === 'asc') sortItemsAsc(items, sortType, setData);
+    else if (direction === 'des') sortItemsDes(items, sortType, setData);
   }, [sortType, direction]);
 
-  const onIdSortClick = () => {
-    setSortType('id');
-    setDirection('asc');
+  const onSortClick = (type, direction) => {
+    setSortType(type);
+    setDirection(direction);
   };
 
-  const onTitleSortClick = () => {
-    setSortType('title');
-    setDirection('asc');
-  };
+  const onIdSortClickAsc = () => onSortClick('id', 'asc');
+  const onIdSortClickDes = () => onSortClick('id', 'des');
+  const onTitleSortClickAsc = () => onSortClick('title', 'asc');
+  const onTitleSortClickDes = () => onSortClick('title', 'des');
+  const onSizeSortClickAsc = () => onSortClick('size', 'asc');
+  const onSizeSortClickDes = () => onSortClick('size', 'des');
+  const onColorSortClickAsc = () => onSortClick('color', 'asc');
+  const onColorSortClickDes = () => onSortClick('color', 'des');
 
-  const onSizeSortClick = () => {
-    setSortType('size');
-    setDirection('asc');
-  };
-
-  const onColorSortClick = () => {
-    setSortType('color');
-    setDirection('asc');
-  };
-
-  const onIdSortClickDes = () => {
-    setSortType('id');
-    setDirection('des');
-  };
-
-  const onTitleSortClickDes = () => {
-    setSortType('title');
-    setDirection('des');
-  };
-
-  const onSizeSortClickDes = () => {
-    setSortType('size');
-    setDirection('des');
-  };
-
-  const onColorSortClickDes = () => {
-    setSortType('color');
-    setDirection('des');
+  const onExactMatchCheckbox = () => {
+    setExactMatch((prevState) => !prevState);
   };
 
   return (
     <div>
       <h2>Items</h2>
 
-      <div className='d-flex gap-5'>
-        <button className='btn btn-primary' onClick={onIdSortClick}>
-          Sort by ID (ASC)
-        </button>
-        <button className='btn btn-primary' onClick={onTitleSortClick}>
-          Sort by Title (ASC)
-        </button>
-        <button className='btn btn-primary' onClick={onSizeSortClick}>
-          Sort by Size (ASC)
-        </button>
-        <button className='btn btn-primary' onClick={onColorSortClick}>
-          Sort by Color (ASC)
-        </button>
-      </div>
-      <div className='d-flex gap-5 my-1'>
-        <button className='btn btn-primary' onClick={onIdSortClickDes}>
-          Sort by ID (Des)
-        </button>
-        <button className='btn btn-primary' onClick={onTitleSortClickDes}>
-          Sort by Title (Des)
-        </button>
-        <button className='btn btn-primary' onClick={onSizeSortClickDes}>
-          Sort by Size (Des)
-        </button>
-        <button className='btn btn-primary' onClick={onColorSortClickDes}>
-          Sort by Color (Des)
-        </button>
-      </div>
-      {data.length > 0 && <Table data={data} />}
+      <Filter
+        setSearchId={setSearchId}
+        onExactMatchCheckbox={onExactMatchCheckbox}
+      />
+
+      <SortAsc
+        onIdSortClickAsc={onIdSortClickAsc}
+        onTitleSortClickAsc={onTitleSortClickAsc}
+        onSizeSortClickAsc={onSizeSortClickAsc}
+        onColorSortClickAsc={onColorSortClickAsc}
+      />
+
+      <SortDes
+        onIdSortClickDes={onIdSortClickDes}
+        onTitleSortClickDes={onTitleSortClickDes}
+        onSizeSortClickDes={onSizeSortClickDes}
+        onColorSortClickDes={onColorSortClickDes}
+      />
+
+      {data.length > 0 ? (
+        <Table data={data} searchId={searchId} exactMatch={exactMatch} />
+      ) : (
+        <div>No robots found.</div>
+      )}
     </div>
   );
 };
