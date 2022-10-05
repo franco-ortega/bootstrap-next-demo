@@ -18,7 +18,7 @@ const items = [
     title: 'Rad Book',
     size: 'Small',
     color: 'Pink',
-    id: 3
+    id: 32
   }
 ];
 
@@ -26,6 +26,7 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState('');
   const [direction, setDirection] = useState('asc');
+  const [searchId, setSearchId] = useState('');
 
   useEffect(() => {
     setData(items);
@@ -89,9 +90,20 @@ const Home = () => {
     setDirection('des');
   };
 
+  console.log(searchId);
+
   return (
     <div>
       <h2>Items</h2>
+
+      <label htmlFor='robotId'>
+        <input
+          type='text'
+          name='robotId'
+          placeholder='Robot ID'
+          onChange={(e) => setSearchId(e.target.value)}
+        />
+      </label>
 
       <div className='d-flex gap-5'>
         <button className='btn btn-primary' onClick={onIdSortClick}>
@@ -121,7 +133,7 @@ const Home = () => {
           Sort by Color (Des)
         </button>
       </div>
-      {data.length > 0 && <Table data={data} />}
+      {data.length > 0 && <Table data={data} searchId={searchId} />}
     </div>
   );
 };
