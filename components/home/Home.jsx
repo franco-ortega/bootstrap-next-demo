@@ -28,6 +28,7 @@ const Home = () => {
   const [sortType, setSortType] = useState('');
   const [direction, setDirection] = useState('asc');
   const [searchId, setSearchId] = useState('');
+  const [exactMatch, setExactMatch] = useState(false);
 
   useEffect(() => {
     setData(items);
@@ -91,13 +92,20 @@ const Home = () => {
     setDirection('des');
   };
 
-  console.log(searchId);
+  const onExactMatchCheckbox = () => {
+    setExactMatch((prevState) => !prevState);
+  };
+
+  console.log(exactMatch);
 
   return (
     <div>
       <h2>Items</h2>
 
-      <Filter handler={setSearchId} />
+      <Filter
+        setSearchId={setSearchId}
+        onExactMatchCheckbox={onExactMatchCheckbox}
+      />
 
       <div className='d-flex gap-5'>
         <button className='btn btn-primary' onClick={onIdSortClick}>
@@ -127,7 +135,9 @@ const Home = () => {
           Sort by Color (Des)
         </button>
       </div>
-      {data.length > 0 && <Table data={data} searchId={searchId} />}
+      {data.length > 0 && (
+        <Table data={data} searchId={searchId} exactMatch={exactMatch} />
+      )}
     </div>
   );
 };

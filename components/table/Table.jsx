@@ -1,9 +1,10 @@
 import React from 'react';
 import Row from './Row';
 
-const Table = ({ data, searchId }) => {
+const Table = ({ data, searchId, exactMatch }) => {
   // console.log(data[0]);
-  console.log(typeof searchId);
+  // console.log(typeof searchId);
+
   return (
     <table className='table table-striped w-75'>
       <tbody>
@@ -16,7 +17,12 @@ const Table = ({ data, searchId }) => {
         </tr>
         {data
           .filter((item) =>
-            searchId ? String(item.id).includes(searchId) : item
+            // searchId ? String(item.id).includes(searchId) : item
+            searchId && exactMatch
+              ? String(item.id) === searchId
+              : searchId
+              ? String(item.id).includes(searchId)
+              : item
           )
           .map((item) => (
             <Row
