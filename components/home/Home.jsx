@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Filter from '../filter/Filter';
 import Table from '../table/Table';
 
 const items = [
@@ -96,14 +97,7 @@ const Home = () => {
     <div>
       <h2>Items</h2>
 
-      <label htmlFor='robotId'>
-        <input
-          type='text'
-          name='robotId'
-          placeholder='Robot ID'
-          onChange={(e) => setSearchId(e.target.value)}
-        />
-      </label>
+      <Filter handler={setSearchId} />
 
       <div className='d-flex gap-5'>
         <button className='btn btn-primary' onClick={onIdSortClick}>
