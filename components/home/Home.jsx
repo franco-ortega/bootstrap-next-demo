@@ -9,17 +9,20 @@ const Home = () => {
       {
         title: 'The Best Book',
         size: 'Medium',
-        color: 'Green'
+        color: 'Green',
+        id: 1
       },
       {
         title: 'The Worst Book',
         size: 'Large',
-        color: 'Orange'
+        color: 'Orange',
+        id: 2
       },
       {
         title: 'The Rad Book',
         size: 'Small',
-        color: 'Pink'
+        color: 'Pink',
+        id: 3
       }
     ]);
   }, []);
