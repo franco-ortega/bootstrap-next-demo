@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { sortItemsAsc, sortItemsDes } from '../../utils/sortItems';
 import Filter from '../filter/Filter';
 import Table from '../table/Table';
 
@@ -33,23 +34,8 @@ const Home = () => {
   useEffect(() => {
     setData(items);
 
-    const sortArray = (type, direction) => {
-      const sorted = [...items].sort((a, b) => {
-        if (direction === 'asc') {
-          if (a[type] < b[type]) return -1;
-          if (a[type] > b[type]) return 1;
-          return 0;
-        } else if (direction === 'des') {
-          if (a[type] > b[type]) return -1;
-          if (a[type] < b[type]) return 1;
-          return 0;
-        }
-      });
-
-      setData(sorted);
-    };
-
-    sortArray(sortType, direction);
+    if (direction === 'asc') sortItemsAsc(items, sortType, setData);
+    else if (direction === 'des') sortItemsDes(items, sortType, setData);
   }, [sortType, direction]);
 
   const onIdSortClick = () => {
