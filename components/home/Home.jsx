@@ -81,8 +81,10 @@ const Home = () => {
         onColorSortClickDes={onColorSortClickDes}
       />
 
-      {data.length > 0 && (
+      {data.length > 0 ? (
         <Table data={data} searchId={searchId} exactMatch={exactMatch} />
+      ) : (
+        <div>No robots found.</div>
       )}
     </div>
   );
