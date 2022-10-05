@@ -11,13 +11,13 @@ const sortItems = (items, type, stateSetter, direction) => {
     }
   });
 
-  return stateSetter(sorted);
+  stateSetter(sorted);
 };
 
 export const sortItemsAsc = (items, type, stateSetter) => {
-  return sortItems(items, type, stateSetter, 'asc');
+  sortItems(items, type, stateSetter, 'asc');
 };
 
 export const sortItemsDes = (items, type, stateSetter) => {
-  return sortItems(items, type, stateSetter, 'des');
+  sortItems(items, type, stateSetter, 'des');
 };
