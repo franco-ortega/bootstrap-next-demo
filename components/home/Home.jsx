@@ -38,45 +38,19 @@ const Home = () => {
     else if (direction === 'des') sortItemsDes(items, sortType, setData);
   }, [sortType, direction]);
 
-  const onIdSortClick = () => {
-    setSortType('id');
-    setDirection('asc');
+  const onSortClick = (type, direction) => {
+    setSortType(type);
+    setDirection(direction);
   };
 
-  const onTitleSortClick = () => {
-    setSortType('title');
-    setDirection('asc');
-  };
-
-  const onSizeSortClick = () => {
-    setSortType('size');
-    setDirection('asc');
-  };
-
-  const onColorSortClick = () => {
-    setSortType('color');
-    setDirection('asc');
-  };
-
-  const onIdSortClickDes = () => {
-    setSortType('id');
-    setDirection('des');
-  };
-
-  const onTitleSortClickDes = () => {
-    setSortType('title');
-    setDirection('des');
-  };
-
-  const onSizeSortClickDes = () => {
-    setSortType('size');
-    setDirection('des');
-  };
-
-  const onColorSortClickDes = () => {
-    setSortType('color');
-    setDirection('des');
-  };
+  const onIdSortClickAsc = () => onSortClick('id', 'asc');
+  const onIdSortClickDes = () => onSortClick('id', 'des');
+  const onTitleSortClickAsc = () => onSortClick('title', 'asc');
+  const onTitleSortClickDes = () => onSortClick('title', 'des');
+  const onSizeSortClickAsc = () => onSortClick('size', 'asc');
+  const onSizeSortClickDes = () => onSortClick('size', 'des');
+  const onColorSortClickAsc = () => onSortClick('color', 'asc');
+  const onColorSortClickDes = () => onSortClick('color', 'des');
 
   const onExactMatchCheckbox = () => {
     setExactMatch((prevState) => !prevState);
@@ -92,16 +66,16 @@ const Home = () => {
       />
 
       <div className='d-flex gap-5'>
-        <button className='btn btn-primary' onClick={onIdSortClick}>
+        <button className='btn btn-primary' onClick={onIdSortClickAsc}>
           Sort by ID (ASC)
         </button>
-        <button className='btn btn-primary' onClick={onTitleSortClick}>
+        <button className='btn btn-primary' onClick={onTitleSortClickAsc}>
           Sort by Title (ASC)
         </button>
-        <button className='btn btn-primary' onClick={onSizeSortClick}>
+        <button className='btn btn-primary' onClick={onSizeSortClickAsc}>
           Sort by Size (ASC)
         </button>
-        <button className='btn btn-primary' onClick={onColorSortClick}>
+        <button className='btn btn-primary' onClick={onColorSortClickAsc}>
           Sort by Color (ASC)
         </button>
       </div>
