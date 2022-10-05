@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Item = ({ title, size, color }) => {
+const Item = ({ id, title, size, color }) => {
   return (
     <li>
+      <div>{id}</div>
       <div>{title}</div>
       <div>{size}</div>
       <div>{color}</div>

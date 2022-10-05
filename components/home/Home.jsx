@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from '../items/ItemList';
+import Table from '../table/Table';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -31,6 +32,7 @@ const Home = () => {
     <div>
       <h2>Items</h2>
       <ItemList items={data} />
+      <Table data={data} />
     </div>
   );
 };
