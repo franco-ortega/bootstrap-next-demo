@@ -1,5 +1,5 @@
 const Layout = ({ children }) => {
-  return <main>{children}</main>;
+  return <main className='bg-secondary bg-gradient vh-100'>{children}</main>;
 };
 
 export default Layout;
