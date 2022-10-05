@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { sortItemsAsc, sortItemsDes } from '../../utils/sortItems';
 import Filter from '../filter/Filter';
+import SortAsc from '../sorters/SortAsc';
+import SortDes from '../sorters/SortDes';
 import Table from '../table/Table';
 
 const items = [
@@ -65,34 +67,20 @@ const Home = () => {
         onExactMatchCheckbox={onExactMatchCheckbox}
       />
 
-      <div className='d-flex gap-5'>
-        <button className='btn btn-primary' onClick={onIdSortClickAsc}>
-          Sort by ID (ASC)
-        </button>
-        <button className='btn btn-primary' onClick={onTitleSortClickAsc}>
-          Sort by Title (ASC)
-        </button>
-        <button className='btn btn-primary' onClick={onSizeSortClickAsc}>
-          Sort by Size (ASC)
-        </button>
-        <button className='btn btn-primary' onClick={onColorSortClickAsc}>
-          Sort by Color (ASC)
-        </button>
-      </div>
-      <div className='d-flex gap-5 my-1'>
-        <button className='btn btn-primary' onClick={onIdSortClickDes}>
-          Sort by ID (Des)
-        </button>
-        <button className='btn btn-primary' onClick={onTitleSortClickDes}>
-          Sort by Title (Des)
-        </button>
-        <button className='btn btn-primary' onClick={onSizeSortClickDes}>
-          Sort by Size (Des)
-        </button>
-        <button className='btn btn-primary' onClick={onColorSortClickDes}>
-          Sort by Color (Des)
-        </button>
-      </div>
+      <SortAsc
+        onIdSortClickAsc={onIdSortClickAsc}
+        onTitleSortClickAsc={onTitleSortClickAsc}
+        onSizeSortClickAsc={onSizeSortClickAsc}
+        onColorSortClickAsc={onColorSortClickAsc}
+      />
+
+      <SortDes
+        onIdSortClickDes={onIdSortClickDes}
+        onTitleSortClickDes={onTitleSortClickDes}
+        onSizeSortClickDes={onSizeSortClickDes}
+        onColorSortClickDes={onColorSortClickDes}
+      />
+
       {data.length > 0 && (
         <Table data={data} searchId={searchId} exactMatch={exactMatch} />
       )}
