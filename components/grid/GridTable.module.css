@@ -1,0 +1,16 @@
+.GridTable {
+  background-color: pink;
+  padding: 1rem;
+}
+
+.GridTable > div {
+  border: solid 0.25rem green;
+  display: grid;
+  /* grid-template-columns: 1fr 2fr 2fr 2fr; */
+  /* gap: 1rem; */
+}
+
+.GridTable div > div {
+  background-color: aqua;
+  border: 0.1rem dashed red;
+}

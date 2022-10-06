@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { sortItemsAsc, sortItemsDes } from '../../utils/sortItems';
 import Filter from '../filter/Filter';
+import GridTable from '../grid/GridTable';
 import SortAsc from '../sorters/SortAsc';
 import SortDes from '../sorters/SortDes';
 import Table from '../table/Table';
@@ -86,6 +87,8 @@ const Home = () => {
       ) : (
         <div>No robots found.</div>
       )}
+
+      <GridTable data={data} />
     </div>
   );
 };
